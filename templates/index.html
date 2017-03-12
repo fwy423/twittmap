@@ -6,11 +6,31 @@
 		<title>Twitter Map</title>
 		<link rel="stylesheet" type="text/css" href="../static/css/index.css">
 	</head>
-	<body>		
-		hhhhh
-		<div id="map"></div>
-		<script type="text/javascript" src="../static/js/index.js?version=2"></script>
+	<body>
+    <h1>TwitterMap</h1>
+    <div id="search">
+      <select id="dropdown">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select> 
+      <button id="Search" onclick="Search()">Search</button>
+    </div>
+		<p></p>
+    <div id="map"></div>
+		
+    <script>
+      function Search() {
+        var select = document.getElementById("dropdown");
+        var searchKey = select.options[select.selectedIndex].value;
+        console.log(searchKey);
+      }
+    </script>
+
+    <script type="text/javascript" src="../static/js/index.js?version=3"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAqD75YwMxiLRbopdaD_BpBXqdLHO-aBY&callback=initMap"async defer></script>
-	</body>
+	
+  </body>
 </html>
 <!DOCTYPE html>
