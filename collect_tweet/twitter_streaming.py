@@ -97,7 +97,7 @@ def running(key_words, key_path, limit_mode=True, time_limit=100):
 
 
 if __name__ == '__main__':
-    keywords = ["music", "food", "sport", "show", "movie", "car", "commercial", "party", "war", "hello"]
+    keywords = ["lunch", "food", "dinner", "eat", "desert", "delicious", "drinks", "bar", "restaurant", "breakfast"]
     running(keywords, key_path="keys.json", limit_mode=True, time_limit=100)
 
     # ckey, csecret, atoken, asecret, elastic_host = load_keys("../../keys.json")

@@ -17,7 +17,7 @@ def index():
 
 # pre-load fixed tweets
 def pre_load_fixed_data():
-    keywords = ["music", "food", "sport", "show", "movie", "car", "commercial", "party", "war", "hello"]
+    keywords = ["lunch", "food", "dinner", "eat", "desert", "delicious", "drinks", "bar", "restaurant", "breakfast"]
     data = DataReader()
     return data.read("static/data/data.txt", keywords)
 
