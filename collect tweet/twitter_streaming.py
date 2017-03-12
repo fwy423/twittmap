@@ -55,7 +55,7 @@ class MyStreamListener(tweepy.StreamListener):
 
                 if json_msg.get("place") is not None:
                     location = json_msg["place"]["bounding_box"]["coordinates"]
-                    #                 location = json_msg["coordinates"]["coordinates"]
+                    location = center_location(location)
                     text = json_msg["text"]
                     timestamp = time.strftime("%a %b %d %Y %H:%M:%S", time.localtime(json_msg["timestamp_ms"]))
                     user_name = json_msg["user"]["screen_name"]
