@@ -13,19 +13,7 @@ elastic_host = "search-twittmap-wf-tos22nd6jgkyhdhvbptnb4pv7a.us-east-1.es.amazo
 
 @app.route("/")
 def index():
-    r = requests.get("http://checkip.amazonaws.com")
-    print(r.text)
     return render_template("index.html")
-
-
-# pre-load fixed tweets
-# def pre_load_fixed_data():
-#     keywords = ["lunch", "food", "dinner", "eat", "desert", "delicious", "drinks", "bar", "restaurant", "breakfast"]
-#     data = DataReader()
-#     return data.read("static/data/data.txt", keywords)
-
-
-# tweets_json = pre_load_fixed_data()
 
 @app.route("/clear/<keyword>")
 def clear(keyword=None):
