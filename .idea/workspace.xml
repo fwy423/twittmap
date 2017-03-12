@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0c3431c8-4052-46fb-82b8-d43d6f7ba30d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.py" afterPath="$PROJECT_DIR$/app.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/collect_tweet/twitter_elasticsearch_util.py" afterPath="$PROJECT_DIR$/collect_tweet/twitter_elasticsearch_util.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/collect_tweet/twitter_streaming.py" afterPath="$PROJECT_DIR$/collect_tweet/twitter_streaming.py" />
     </list>
     <ignored path="HW1_twitmap.iws" />
@@ -38,23 +38,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="twitter_streaming.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="twitter_streaming.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/collect_tweet/twitter_streaming.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="99" column="116" selection-start-line="99" selection-start-column="116" selection-end-line="99" selection-end-column="116" />
-              <folding>
-                <element signature="e#0#13#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="0">
+              <caret line="0" column="13" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="twitter_elasticsearch_util.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="twitter_elasticsearch_util.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/collect_tweet/twitter_elasticsearch_util.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="76" column="91" selection-start-line="76" selection-start-column="2" selection-end-line="76" selection-end-column="91" />
+            <state relative-caret-position="252">
+              <caret line="124" column="4" selection-start-line="124" selection-start-column="4" selection-end-line="124" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -119,9 +117,9 @@
         <option value="$PROJECT_DIR$/moke_data.py" />
         <option value="$PROJECT_DIR$/collect tweet/twitter_streaming.py" />
         <option value="$PROJECT_DIR$/collect tweet/twitter_elasticsearch_util.py" />
-        <option value="$PROJECT_DIR$/collect_tweet/twitter_elasticsearch_util.py" />
         <option value="$PROJECT_DIR$/app.py" />
         <option value="$PROJECT_DIR$/collect_tweet/twitter_streaming.py" />
+        <option value="$PROJECT_DIR$/collect_tweet/twitter_elasticsearch_util.py" />
       </list>
     </option>
   </component>
@@ -594,7 +592,14 @@
       <option name="project" value="LOCAL" />
       <updated>1489336483078</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="backend streaming &amp; elasticsearch finish">
+      <created>1489340492752</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1489340492752</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -650,9 +655,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -738,21 +741,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/collect_tweet/twitter_elasticsearch_util.py">
+    <entry file="file://$PROJECT_DIR$/collect_tweet/twitter_streaming.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="76" column="91" selection-start-line="76" selection-start-column="2" selection-end-line="76" selection-end-column="91" />
+        <state relative-caret-position="0">
+          <caret line="0" column="13" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/collect_tweet/twitter_streaming.py">
+    <entry file="file://$PROJECT_DIR$/collect_tweet/twitter_elasticsearch_util.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="99" column="116" selection-start-line="99" selection-start-column="116" selection-end-line="99" selection-end-column="116" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="252">
+          <caret line="124" column="4" selection-start-line="124" selection-start-column="4" selection-end-line="124" selection-end-column="4" />
+          <folding />
         </state>
       </provider>
     </entry>

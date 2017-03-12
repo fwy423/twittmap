@@ -1,6 +1,31 @@
 from elasticsearch import Elasticsearch
 
 
+def creat_mapping(elastic_host, index='tweet', doc_type='tweet_data'):
+    esclient = Elasticsearch([{'host': elastic_host, 'port': 80}])
+    esclient.indices.delete(index=index)
+    esclient.indices.create(index=index, ignore=400)
+    mapping = {
+        "properties": {
+            "user_name": {
+                "type": "string"
+            },
+            "timestamp": {
+                "type": "string"
+            },
+            "text": {
+                "type": "string"
+            },
+            "location": {
+                "type": "geo_point"
+            }
+        }
+    }
+
+    response = esclient.indices.put_mapping(index=index, doc_type=doc_type, body=mapping)
+    return response["acknowledged"]
+
+
 def upload(elastic_host, json_data, index='tweet', doc_type='tweet_data'):
     """
     :param elastic_host: the host name of your Elasticsearch
@@ -45,7 +70,7 @@ def search(elastic_host, key_word=None, index='tweet', doc_type='tweet_data'):
     for hit in response['hits']['hits']:
         print("%(location)s \n%(timestamp)s \n%(user_name)s \n%(text)s\n" % hit["_source"])
         result.append(hit["_source"])
-    output = json.dumps({"result": result})
+    output = {"result": result}
 
     return output
 
@@ -74,4 +99,30 @@ def clear(elastic_host, key_word=None, index='tweet', doc_type='tweet_data'):
                                         body={"query": query})
     return response["deleted"]
 
-# elastic_host = "search-twittmap-wf-tos22nd6jgkyhdhvbptnb4pv7a.us-east-1.es.amazonaws.com"
+
+def location_search(elastic_host, location, radius=1, index="tweet", doc_type="tweet_data"):
+    esclient = Elasticsearch([{'host': elastic_host, 'port': 80}])
+    query = {
+        "bool": {
+            "filter": {
+                "geo_distance": {
+                    "distance": (str(radius)+"km"),
+                    "location": location
+                }
+            }
+        }
+    }
+    print(query)
+    response = esclient.search(index=index,
+                               doc_type=doc_type,
+                               body={"query": query})
+    print("Got %d Hits:" % response['hits']['total'])
+    result = []
+    for hit in response['hits']['hits']:
+        print("%(location)s \n%(timestamp)s \n%(user_name)s \n%(text)s\n" % hit["_source"])
+        result.append(hit["_source"])
+    output = {"result": result}
+
+    return output
+
+    # elastic_host = "search-twittmap-wf-tos22nd6jgkyhdhvbptnb4pv7a.us-east-1.es.amazonaws.com"

@@ -2,7 +2,7 @@ import tweepy
 import time
 import json
 
-from twitter_elasticsearch_util import upload, search
+from twitter_elasticsearch_util import upload, search, creat_mapping
 
 
 def load_keys(json_file):
@@ -20,7 +20,7 @@ def center_location(location):
     assert len(location) == 1 and len(location[0]) == 4
     x = location[0][0][0] + location[0][1][0] + location[0][2][0] + location[0][3][0]
     y = location[0][0][1] + location[0][1][1] + location[0][2][1] + location[0][3][1]
-    return [x / 4, y / 4]
+    return x / 4, y / 4
 
 
 class MyStreamListener(tweepy.StreamListener):
@@ -48,28 +48,32 @@ class MyStreamListener(tweepy.StreamListener):
     def on_data(self, data):
         # parse the twitter and extract the geolocation information
         # Reference: https://dev.twitter.com/overview/api/tweets
-        print("+++++++++++++")
+
         if (time.time() - self.start_time) < self.limit:
             try:
                 json_msg = json.loads(data)
-
                 if json_msg.get("place") is not None:
+                    print("+++++++++++++")
                     location = json_msg["place"]["bounding_box"]["coordinates"]
-                    location = center_location(location)
+                    location_long, location_lat = center_location(location)
                     text = json_msg["text"]
-                    timestamp = time.strftime("%a %b %d %Y %H:%M:%S", time.localtime(json_msg["timestamp_ms"]))
+                    timestamp = int(json_msg["timestamp_ms"])
+                    timestamp = time.strftime("%a %b %d %H:%M:%S", time.localtime(timestamp))
                     user_name = json_msg["user"]["screen_name"]
-                    print('location:', location[0][0])
+                    print('location_long:', location_long)
+                    print('location_lat:', location_lat)
                     print('timestamp:', timestamp)
                     print('user_name:', user_name)
                     print('text:', text)
 
                     upload_data = {
-                        "location": location,
+                        "location_long": location_long,
+                        "location_lat": location_lat,
                         "timestamp": timestamp,
                         "user_name": user_name,
                         "text": text
                     }
+                    print(upload_data)
                     upload(elastic_host, upload_data)
 
             except Exception as e:
