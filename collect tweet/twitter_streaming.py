@@ -2,10 +2,7 @@ import tweepy
 import time
 import json
 
-ckey = "SoOGXhd8y9Hh9NG1qKrIwX8VN"
-csecret = "PmogNRIh6zjE0bw2SzZmQOw7Er4xWjKmSvmphgbYiG2q4eEWUX"
-atoken = "768635579647033348-4AB8vyLVUgz26ZSU8ue2rd2CAXBdLml"
-asecret = "l0Lhu4u2gmKMACd3Dqygg3CtaKZ8Ab6JoVMf95JmBAY9v"
+from static_variables import ckey, csecret, atoken, asecret
 
 
 def center_location(location):
