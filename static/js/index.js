@@ -3,6 +3,8 @@ var markerClusterer = null;
 var coordinates_lat = [];
 var coordinates_lng = [];
 var tweets = [];
+var userNames = [];
+var timeStamp = [];
 var markers = [];
 var prev_infowindow = null;
 
@@ -27,27 +29,42 @@ function Search() {
   httpGetAsync("searchf/", searchKey);
 }
 
+function resetVariables() {
+  coordinates_lat = [];
+  coordinates_lng = [];
+  tweets = [];
+  userNames = [];
+  timeStamp = [];
+  prev_infowindow = null;
+  markers = [];
+  markerClusterer.clearMarkers();
+}
+
 function httpGetAsync(theUrl, keyword) {
-  // resetVariables()
+  resetVariables()
   console.log("in the http get part");
   $.getJSON(theUrl + keyword, function(result){
-    processJsonResult(result, keyword);
+    console.log(result)
+    processJsonResult(result);
   });
 }
 
-function processJsonResult(result, keyword) {
-  var tweets_list = result[keyword];
+function processJsonResult(result) {
+  console.log(result.result);
+  var tweets_list = result.result;
   if (tweets_list == null) {
     alert("No results found");
     return;
   }
-  console.log("in the result part");
-  console.log(tweets_list);
+  // console.log("in the result part");
+  // console.log(tweets_list);
   for (var i = 0; i < tweets_list.length; i++) {
     var tweet = tweets_list[i];
-    coordinates_lng.push(tweet.coordinates[0]);
-    coordinates_lat.push(tweet.coordinates[1]);
+    coordinates_lat.push(tweet.location_lat);
+    coordinates_lng.push(tweet.location_long);
     tweets.push(tweet.text);
+    userNames.push(tweet.user_name);
+    timeStamp.push(tweet.timestamp);
   }
   generateMarkers();
 }
@@ -61,7 +78,9 @@ function generateMarkers() {
     }
 
     var contentString = '<div id="content">'+
+            "<h3>" + userNames[i] + "</h3>" +
             "<p>" + tweets[i] + "</p>" +
+            "<p>" + "Created At: " + timeStamp[i] + "</p>" +
             "</div>";
 
     var marker = new google.maps.Marker({
@@ -91,3 +110,4 @@ function bindInfoWindow(marker, map, infowindow, html) {
     infowindow.open(map, this);
   });
 }
+

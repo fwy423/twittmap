@@ -1,5 +1,5 @@
 from elasticsearch import Elasticsearch
-
+import json
 
 def upload(elastic_host, json_data, index='tweet', doc_type='tweet_data'):
     """
@@ -40,13 +40,12 @@ def search(elastic_host, key_word=None, index='tweet', doc_type='tweet_data'):
     response = esclient.search(index=index,
                                doc_type=doc_type,
                                body={"query": {"match": {"text": key_word}}})
-    print("Got %d Hits:" % response['hits']['total'])
+    #print("Got %d Hits:" % response['hits']['total'])
     result = []
     for hit in response['hits']['hits']:
-        print("%(location)s \n%(timestamp)s \n%(user_name)s \n%(text)s\n" % hit["_source"])
+        #print("%(location)s \n%(timestamp)s \n%(user_name)s \n%(text)s\n" % hit["_source"])
         result.append(hit["_source"])
-    output = json.dumps({"result": result})
-
+    output = {"result": result}
     return output
 
 
