@@ -20,6 +20,14 @@ function initMap() {
 
   markerClusterer = new MarkerClusterer(map, markers)
 
+  google.maps.event.addListener(map, "rightclick", function(event) {
+    var lat = event.latLng.lat();
+    var lng = event.latLng.lng();
+    var location = lng+" "+lat;
+    console.log(location);
+    httpGetAsync("searchf/", location);
+  });
+
 }
 
 function Search() {

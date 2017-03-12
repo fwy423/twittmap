@@ -2,10 +2,11 @@ import sys
 from flask import Flask, render_template, send_file,jsonify
 
 sys.path.append("collect_tweet/")
-from twitter_elasticsearch_util import clear, search
+from twitter_elasticsearch_util import clear, search, location_search
 
 app = Flask(__name__)
 elastic_host = "search-twittmap-wf-tos22nd6jgkyhdhvbptnb4pv7a.us-east-1.es.amazonaws.com"
+keywords = ["lunch", "food", "dinner", "eat", "desert", "delicious", "drinks", "bar", "restaurant", "breakfast"]
 
 
 @app.route("/")
@@ -19,7 +20,13 @@ def clear(keyword=None):
 
 @app.route("/searchf/<keyword>")
 def searchf(keyword):
-    result = search(elastic_host, keyword)
+    if keyword in keywords:
+        result = search(elastic_host, keyword)
+    else:
+        location = keyword.split()
+        location = map(float, location)
+        print (location)
+        result = location_search(elastic_host, location)
     return jsonify(result)
 
 
