@@ -1,8 +1,13 @@
-from flask import Flask, render_template, jsonify, send_file
+import sys
+import json
+from flask import Flask, render_template, send_file
 from moke_data import DataReader
 
-sys.path.append("../co")
+sys.path.append("collect_tweet/")
+from twitter_elasticsearch_util import clear, search
+
 app = Flask(__name__)
+elastic_host = "search-twittmap-wf-tos22nd6jgkyhdhvbptnb4pv7a.us-east-1.es.amazonaws.com"
 
 
 @app.route("/")
@@ -17,19 +22,19 @@ def pre_load_fixed_data():
     return data.read("static/data/data.txt", keywords)
 
 
-tweets_json = pre_load_fixed_data()
+# tweets_json = pre_load_fixed_data()
+
+@app.route("/clear/<keyword>")
+def clear(keyword=None):
+    return clear(elastic_host, keyword)
 
 
 @app.route("/searchf/<keyword>")
-def searchf(keyword=None):
-    if keyword is None:
-        to_return = jsonify(tweets_json)
-    else:
-        tweets_of_keyword = {keyword: []}
-        if keyword in tweets_json:
-            tweets_of_keyword = {keyword: tweets_json[keyword]}
-        to_return = jsonify(tweets_of_keyword)
-    return to_return
+def searchf(keyword):
+    result = json.loads(search(elastic_host, keyword))
+    # for items in result["result"]:
+    #     print(items)
+    return result
 
 
 @app.route('/images/<filename>')

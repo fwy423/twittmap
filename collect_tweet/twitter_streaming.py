@@ -82,14 +82,31 @@ class MyStreamListener(tweepy.StreamListener):
             return False
 
 
-if __name__ == '__main__':
-    ckey, csecret, atoken, asecret, elastic_host = load_keys("../../keys.json")
+def running(key_words, key_path, limit_mode=True, time_limit=100):
+    ckey, csecret, atoken, asecret, elastic_host = load_keys(key_path)
     auth = tweepy.OAuthHandler(ckey, csecret)
     auth.set_access_token(atoken, asecret)
 
     api = tweepy.API(auth)
     with open("streaming.log", 'a', encoding="utf-8") as log:
         print("start streaming...")
-        myStreamListener = MyStreamListener(elastic_host=elastic_host, limit_mode=True, time_limit=10, log_file=log)
+        myStreamListener = MyStreamListener(elastic_host=elastic_host, limit_mode=limit_mode, time_limit=time_limit,
+                                            log_file=log)
         myStream = tweepy.Stream(auth=api.auth, listener=myStreamListener)
-        myStream.filter(track=['hello'])
+        myStream.filter(track=key_words)
+
+
+if __name__ == '__main__':
+    keywords = ["music", "food", "sport", "show", "movie", "car", "commercial", "party", "war", "hello"]
+    running(keywords, key_path="keys.json", limit_mode=True, time_limit=100)
+
+    # ckey, csecret, atoken, asecret, elastic_host = load_keys("../../keys.json")
+    # auth = tweepy.OAuthHandler(ckey, csecret)
+    # auth.set_access_token(atoken, asecret)
+    #
+    # api = tweepy.API(auth)
+    # with open("streaming.log", 'a', encoding="utf-8") as log:
+    #     print("start streaming...")
+    #     myStreamListener = MyStreamListener(elastic_host=elastic_host, limit_mode=False, time_limit=10, log_file=log)
+    #     myStream = tweepy.Stream(auth=api.auth, listener=myStreamListener)
+    #     myStream.filter(track=['hello'])

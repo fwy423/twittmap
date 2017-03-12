@@ -23,7 +23,7 @@ def upload(elastic_host, json_data, index='tweet', doc_type='tweet_data'):
     return False
 
 
-def search(elastic_host, key_word, index='tweet', doc_type='tweet_data'):
+def search(elastic_host, key_word=None, index='tweet', doc_type='tweet_data'):
     """
     :param elastic_host: the host name of your Elasticsearch
 
@@ -50,7 +50,7 @@ def search(elastic_host, key_word, index='tweet', doc_type='tweet_data'):
     return output
 
 
-def clear(elastic_host, key_word="All", index='tweet', doc_type='tweet_data'):
+def clear(elastic_host, key_word=None, index='tweet', doc_type='tweet_data'):
     """
     :param elastic_host: the host name of your Elasticsearch
 
@@ -64,7 +64,7 @@ def clear(elastic_host, key_word="All", index='tweet', doc_type='tweet_data'):
     """
     esclient = Elasticsearch([{'host': elastic_host, 'port': 80}])
 
-    if key_word == "All":
+    if key_word is None:
         query = {"match_all": {}}
     else:
         query = {"match": {"text": key_word}}
