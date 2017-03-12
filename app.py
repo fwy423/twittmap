@@ -1,8 +1,5 @@
-import requests
 import sys
-import json
 from flask import Flask, render_template, send_file,jsonify
-from moke_data import DataReader
 
 sys.path.append("collect_tweet/")
 from twitter_elasticsearch_util import clear, search

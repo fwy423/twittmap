@@ -60,8 +60,8 @@ function processJsonResult(result) {
   // console.log(tweets_list);
   for (var i = 0; i < tweets_list.length; i++) {
     var tweet = tweets_list[i];
-    coordinates_lat.push(tweet.location_lat);
-    coordinates_lng.push(tweet.location_long);
+    coordinates_lng.push(tweet.location[0]);
+    coordinates_lat.push(tweet.location[1]);
     tweets.push(tweet.text);
     userNames.push(tweet.user_name);
     timeStamp.push(tweet.timestamp);
