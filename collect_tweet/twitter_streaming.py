@@ -37,6 +37,8 @@ class MyStreamListener(tweepy.StreamListener):
         else:
             self.log_file = log_file
 
+        creat_mapping(elastic_host)
+
         super(MyStreamListener, self).__init__()
 
     def on_error(self, status_code):
