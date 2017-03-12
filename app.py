@@ -1,8 +1,8 @@
 import sys
-from flask import Flask, render_template, send_file,jsonify
+from flask import Flask, render_template, send_file, jsonify
 
 sys.path.append("collect_tweet/")
-from twitter_elasticsearch_util import clear, search
+from twitter_elasticsearch_util import clear, search, location_search
 
 app = Flask(__name__)
 elastic_host = "search-twittmap-wf-tos22nd6jgkyhdhvbptnb4pv7a.us-east-1.es.amazonaws.com"
@@ -11,6 +11,7 @@ elastic_host = "search-twittmap-wf-tos22nd6jgkyhdhvbptnb4pv7a.us-east-1.es.amazo
 @app.route("/")
 def index():
     return render_template("index.html")
+
 
 @app.route("/clear/<keyword>")
 def clear(keyword=None):
@@ -29,4 +30,4 @@ def get_image(filename=None):
 
 
 if __name__ == "__main__":
-    app.run(host = '0.0.0.0')
+    app.run(host='0.0.0.0')
