@@ -17,9 +17,9 @@ def load_keys(json_file):
 
 
 def center_location(location):
-    assert len(location) == 4
-    x = location[0][0] + location[1][0] + location[2][0] + location[3][0]
-    y = location[0][1] + location[1][1] + location[2][1] + location[3][1]
+    assert len(location) == 1 and len(location[0]) == 4
+    x = location[0][0][0] + location[0][1][0] + location[0][2][0] + location[0][3][0]
+    y = location[0][0][1] + location[0][1][1] + location[0][2][1] + location[0][3][1]
     return [x / 4, y / 4]
 
 

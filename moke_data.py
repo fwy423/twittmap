@@ -1,7 +1,7 @@
 import json
 
-class DataReader:
 
+class DataReader:
     def read(self, filepath, keywords):
         data = {}
         for keyword in keywords:
