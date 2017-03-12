@@ -2,7 +2,18 @@ import tweepy
 import time
 import json
 
-from static_variables import ckey, csecret, atoken, asecret
+from twitter_elasticsearch_util import upload, search
+
+
+def load_keys(json_file):
+    with open(json_file) as data_file:
+        data = json.load(data_file)
+        ckey = data["ckey"]
+        csecret = data["csecret"]
+        atoken = data["atoken"]
+        asecret = data["asecret"]
+        elastic_host = data["elastic_host"]
+        return ckey, csecret, atoken, asecret, elastic_host
 
 
 def center_location(location):
@@ -13,7 +24,7 @@ def center_location(location):
 
 
 class MyStreamListener(tweepy.StreamListener):
-    def __init__(self, limit_mode=True, time_limit=60, log_file=None):
+    def __init__(self, elastic_host, limit_mode=True, time_limit=60, log_file=None):
         print("Initialization...")
         if limit_mode:
             print("Time Limit Mode: ", time_limit, "sec")
@@ -46,12 +57,20 @@ class MyStreamListener(tweepy.StreamListener):
                     location = json_msg["place"]["bounding_box"]["coordinates"]
                     #                 location = json_msg["coordinates"]["coordinates"]
                     text = json_msg["text"]
-                    timestamp = json_msg["timestamp_ms"]
+                    timestamp = time.strftime("%a %b %d %Y %H:%M:%S", time.localtime(json_msg["timestamp_ms"]))
                     user_name = json_msg["user"]["screen_name"]
                     print('location:', location[0][0])
                     print('timestamp:', timestamp)
                     print('user_name:', user_name)
                     print('text:', text)
+
+                    upload_data = {
+                        "location": location,
+                        "timestamp": timestamp,
+                        "user_name": user_name,
+                        "text": text
+                    }
+                    upload(elastic_host, upload_data)
 
             except Exception as e:
                 print("Error: " + str(e))
@@ -64,13 +83,13 @@ class MyStreamListener(tweepy.StreamListener):
 
 
 if __name__ == '__main__':
-
+    ckey, csecret, atoken, asecret, elastic_host = load_keys("../../keys.json")
     auth = tweepy.OAuthHandler(ckey, csecret)
     auth.set_access_token(atoken, asecret)
 
     api = tweepy.API(auth)
     with open("streaming.log", 'a', encoding="utf-8") as log:
         print("start streaming...")
-        myStreamListener = MyStreamListener(limit_mode=True, time_limit=10, log_file=log)
+        myStreamListener = MyStreamListener(elastic_host=elastic_host, limit_mode=True, time_limit=10, log_file=log)
         myStream = tweepy.Stream(auth=api.auth, listener=myStreamListener)
         myStream.filter(track=['hello'])

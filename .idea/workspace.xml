@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0c3431c8-4052-46fb-82b8-d43d6f7ba30d" name="Default" comment="twitter streaming">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/Fuwy.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/collect tweet/elasticsearch_initialization.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/collect tweet/static_variables.py" />
+    <list default="true" id="0c3431c8-4052-46fb-82b8-d43d6f7ba30d" name="Default" comment="twitter streaming &amp; elastic search">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/collect tweet/keys.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/collect tweet/twitter_elasticsearch_util.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/collect tweet/twitter_elasticsearch_upload.py" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/collect tweet/twitter_streaming.py" afterPath="$PROJECT_DIR$/collect tweet/twitter_streaming.py" />
     </list>
     <ignored path="HW1_twitmap.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -23,6 +24,14 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
+  <component name="DatabaseView">
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="HW1_twitmap" />
@@ -32,30 +41,18 @@
       <file leaf-file-name="twitter_streaming.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/collect tweet/twitter_streaming.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="41" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
-              <folding>
-                <element signature="e#0#13#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="twitter_elasticsearch_upload.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/collect tweet/twitter_elasticsearch_upload.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="88" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="88" />
+            <state relative-caret-position="60">
+              <caret line="4" column="31" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="static_variables.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/collect tweet/static_variables.py">
+      <file leaf-file-name="twitter_elasticsearch_util.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/collect tweet/twitter_elasticsearch_util.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+            <state relative-caret-position="255">
+              <caret line="17" column="89" selection-start-line="17" selection-start-column="89" selection-end-line="17" selection-end-column="89" />
               <folding />
             </state>
           </provider>
@@ -71,11 +68,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="elasticsearch_initialization.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/collect tweet/elasticsearch_initialization.sh">
+      <file leaf-file-name="keys.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/collect tweet/keys.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="15" column="30" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
+            <state relative-caret-position="75">
+              <caret line="5" column="11" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="95" />
               <folding />
             </state>
           </provider>
@@ -100,8 +97,11 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/collect tweet/elasticsearch_initialization.sh" />
-        <option value="$PROJECT_DIR$/collect tweet/twitter_elasticsearch_upload.py" />
         <option value="$PROJECT_DIR$/collect tweet/static_variables.py" />
+        <option value="$PROJECT_DIR$/collect tweet/keys.txt" />
+        <option value="$PROJECT_DIR$/collect tweet/keys.jason" />
+        <option value="$PROJECT_DIR$/collect tweet/keys.json" />
+        <option value="$PROJECT_DIR$/collect tweet/twitter_elasticsearch_upload.py" />
         <option value="$PROJECT_DIR$/collect tweet/twitter_streaming.py" />
       </list>
     </option>
@@ -496,7 +496,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2536349" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32847896" sideWeight="0.50646204" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329582" sideWeight="0.49353796" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32847896" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -538,13 +538,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/collect tweet/twitter_elasticsearch_upload.py">
+    <entry file="file://$PROJECT_DIR$/collect tweet/twitter_elasticsearch_util.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
@@ -560,29 +558,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/collect tweet/static_variables.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/collect tweet/keys">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/collect tweet/elasticsearch_initialization.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="15" column="30" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/collect tweet/static_variables.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/collect tweet/twitter_streaming.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="41" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -594,10 +590,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/collect tweet/twitter_elasticsearch_upload.py">
+    <entry file="file://$PROJECT_DIR$/collect tweet/keys.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="88" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="88" />
+        <state relative-caret-position="75">
+          <caret line="5" column="11" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="95" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/collect tweet/twitter_streaming.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="31" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/collect tweet/twitter_elasticsearch_util.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="89" selection-start-line="17" selection-start-column="89" selection-end-line="17" selection-end-column="89" />
           <folding />
         </state>
       </provider>
