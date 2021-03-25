@@ -33,7 +33,7 @@ python-dateutil==2.5.3
 python-engineio==1.0.3
 python-socketio==1.6.0
 pytz==2016.7
-PyYAML==3.12
+PyYAML==5.4
 requests==2.13.0
 requests-oauthlib==0.8.0
 scipy==0.18.1
